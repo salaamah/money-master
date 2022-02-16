@@ -1,23 +1,49 @@
-let incomeAmount, balance;
+function inputValue(id){
+    return document.getElementById(id);
+}
+function innerValue(id){
+    return document.getElementById(id);
+}
+function makeFloat(str){
+    if (parseFloat(str)==NaN || parseFloat(str)<0){
+        return "Please give a valid and positive numeric value";
+    }
+    else{
+        return parseFloat(str);
+    }
+}
+
+let incomeAmount, balance, totalExpense;
 document.getElementById('calculate-btn').addEventListener('click', function(){
-    const foodAmount = parseInt(document.getElementById('food-amount').value);
-    const rentAmount = parseInt(document.getElementById('rent-amount').value);
-    const clothesAmount = parseInt(document.getElementById('clothes-amount').value);
-
-    document.getElementById('total-expense').innerText = foodAmount+rentAmount+clothesAmount;
+    incomeAmount = makeFloat(inputValue('income-amount').value);
+    const foodAmount = makeFloat(inputValue('food-amount').value);
+    const rentAmount = makeFloat(inputValue('rent-amount').value);
+    const clothesAmount = makeFloat(inputValue('clothes-amount').value);
+    totalExpense = foodAmount+rentAmount+clothesAmount;
     
-    incomeAmount = parseInt(document.getElementById('income-amount').value);
+    innerValue('total-expense').innerText = totalExpense;
+    balance = incomeAmount - totalExpense;
+    innerValue('balance').innerText = balance;
 
-    balance = incomeAmount - (foodAmount+rentAmount+clothesAmount);
-    document.getElementById('balance').innerText = balance;
+    inputValue('income-amount').value = "";
+    inputValue('food-amount').value = "";
+    inputValue('rent-amount').value = "";
+    inputValue('clothes-amount').value = "";
 })
 
 document.getElementById('save-btn').addEventListener('click', function(){
-    const savePercent = parseFloat(document.getElementById('save-percent').value)/100;
+    const savePercent = makeFloat(inputValue('save-percent').value)/100;
 
     const savingAmount = incomeAmount*savePercent;
-    document.getElementById('saving-amount').innerText = savingAmount;
+    innerValue('saving-amount').innerText = savingAmount;
 
     const remaingBalance = balance - savingAmount;
-    document.getElementById('remaining-balance').innerText = remaingBalance;
+    innerValue('remaining-balance').innerText = remaingBalance;
+
+    inputValue('save-percent').value = "";
 })
+
+// document.getElementById('test-btn').addEventListener('click', function(){
+//     console.log(parseInt(document.getElementById('test-input').value));
+//     console.log(document.getElementById('test-input').value);
+// })
