@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
     <title>Salary Distribution</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    
+    <header>
+        <h1 class="text-5xl text-center mt-12">Salary Distribution</h1>
+    </header>
+    <main>
+        <section id="image">
+            <img src="./images/calculator.jpg" alt="">
+        </section>
+        <section id="calculation">
+            <h3>Income</h3>
+
+            <h4>Income: <input id="income-amount" type="text" placeholder="Please enter your amount"></h4>
+            
+            <h3>Expense</h3>
+            <h4>Food: <input id="food-amount" type="text" placeholder="Please enter your amount"></h4>
+
+            <h4>Rent: <input id="rent-amount" type="text" placeholder="Please enter your amount"></h4>
+            
+            <h4>Clothes: <input id="clothes-amount" type="text" placeholder="Please enter your amount"></h4>
+            
+            <button id="calculate-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Calculate</button>
+
+            <h3>Total Expense: <span id="total-expense">00</span></h3>
+            <h3>Balance: <span id="balance">00</span></h3>
+
+            <h4>Save: <input id="save-percent" type="text" placeholder="Enter percent"> % <button id="save-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Save</button></h4>
+            <h3>Saving Amount: <span id="saving-amount">00</span></h3>
+            <h3>Remaining Balance: <span id="remaining-balance">00</span></h3>
+        </section>
+    </main>
     <script src="./js/calculations.js"></script>
 </body>
 </html>
