@@ -1,4 +1,4 @@
-//Getting value or assigning a value
+//Getting value or assigning a value in input field
 function inputValue(id, value){
     if (arguments.length == 1){
         return document.getElementById(id).value;
@@ -10,7 +10,7 @@ function inputValue(id, value){
 function innerValue(id, value){
     document.getElementById(id).innerText = value;
 }
-//Convert string to float after Exception handling
+//checking a string and returning value or warning msg
 function makeFloat(str){
     if (!isNaN(str) && parseFloat(str) > 0){
         return parseFloat(str);

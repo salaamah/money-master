@@ -12,30 +12,45 @@
     <header>
         <h1 class="text-5xl text-center mt-12">Salary Distribution</h1>
     </header>
-    <main>
-        <section id="image">
-            <img src="./images/calculator.jpg" alt="">
+    <main class="grid gap-4 grid-cols-2 mx-16 mb-4">
+        <section id="image" class="bg-slate-100 mt-12 p-16 rounded">
+            <img class="" src="./images/calculator.jpg" alt="">
         </section>
-        <section id="calculation">
-            <h3>Income</h3>
+        <section id="calculation" class="bg-slate-100 object-contain mt-12 py-16 px-32 rounded">
+            <h3 class="text-center mb-4 font-bold text-2">Income</h3>
+            <div class="grid grid-cols-2">
+                <div><h4>Income: </h4></div>
+                <div><input id="income-amount" class="px-2" type="text" placeholder="Please enter your amount"></div>
+            </div>
+            <h3 class="text-center mb-4 mt-8 font-bold text-2">Expense</h3>
+            <div class="grid grid-cols-2 my-1">
+                <div><h4>Food: </h4></div>
+                <div><input id="food-amount" class="px-2" type="text" placeholder="Please enter your amount"></div>
+            </div>
+            <div class="grid grid-cols-2">
+                <div><h4>Rent: </h4></div>
+                <div><input id="rent-amount" class="px-2" type="text" placeholder="Please enter your amount"></div>
+            </div>
+            <div  class="grid grid-cols-2 my-1">
+                <div><h4>Clothes: </h4></div>
+                <div><input id="clothes-amount" class="px-2" type="text" placeholder="Please enter your amount"></div>
+            </div>
+                        
+            <div class="m-2 text-center"><button id="calculate-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Calculate</button></div>
 
-            <h4>Income: <input id="income-amount" type="text" placeholder="Please enter your amount"></h4>
+            <h3 class="text-center font-semibold text-2">Total Expense: <span id="total-expense">00</span></h3>
+            <h3 class="text-center font-semibold text-2">Balance: <span id="balance">00</span></h3>
+
+            <div class="flex mt-4">
+                <div class="mx-1"><h4>Save: </h4></div>
+                <div ><input id="save-percent" class="px-2 mx-1 w-28" type="text" placeholder="Enter percent"></div>
+                <div class="mx-1">%</div>
+                <div class="mx-1"><button id="save-btn" class="bg-blue-600 px-4 rounded text-white font-medium">Save</button></div>
+            </div>
             
-            <h3>Expense</h3>
-            <h4>Food: <input id="food-amount" type="text" placeholder="Please enter your amount"></h4>
-
-            <h4>Rent: <input id="rent-amount" type="text" placeholder="Please enter your amount"></h4>
             
-            <h4>Clothes: <input id="clothes-amount" type="text" placeholder="Please enter your amount"></h4>
-            
-            <button id="calculate-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Calculate</button>
-
-            <h3>Total Expense: <span id="total-expense">00</span></h3>
-            <h3>Balance: <span id="balance">00</span></h3>
-
-            <h4>Save: <input id="save-percent" type="text" placeholder="Enter percent"> % <button id="save-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Save</button></h4>
-            <h3>Saving Amount: <span id="saving-amount">00</span></h3>
-            <h3>Remaining Balance: <span id="remaining-balance">00</span></h3>
+            <h3 class="text-center font-semibold text-2">Saving Amount: <span id="saving-amount">00</span></h3>
+            <h3 class="text-center font-semibold text-2">Remaining Balance: <span id="remaining-balance">00</span></h3>
 
             <!--
             <input id="test-input" type="text" placeholder="Enter percent"> <button id="test-btn" class="bg-blue-600 px-4 py-2 rounded text-white font-medium">Test</button>
