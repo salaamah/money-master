@@ -1,49 +1,65 @@
-function inputValue(id){
-    return document.getElementById(id);
+//Getting value or assigning a value
+function inputValue(id, value){
+    if (arguments.length == 1){
+        return document.getElementById(id).value;
+    }else if(arguments.length == 2){
+        document.getElementById(id).value = value;
+    }    
 }
-function innerValue(id){
-    return document.getElementById(id);
+//Assigning a value between text
+function innerValue(id, value){
+    document.getElementById(id).innerText = value;
 }
+//Convert string to float after Exception handling
 function makeFloat(str){
-    if (parseFloat(str)==NaN || parseFloat(str)<0){
-        return "Please give a valid and positive numeric value";
+    if (!isNaN(str) && parseFloat(str) > 0){
+        return parseFloat(str);
     }
     else{
-        return parseFloat(str);
+        return "Give a valid and +ve number";
     }
 }
 
 let incomeAmount, balance, totalExpense;
-document.getElementById('calculate-btn').addEventListener('click', function(){
-    incomeAmount = makeFloat(inputValue('income-amount').value);
-    const foodAmount = makeFloat(inputValue('food-amount').value);
-    const rentAmount = makeFloat(inputValue('rent-amount').value);
-    const clothesAmount = makeFloat(inputValue('clothes-amount').value);
-    totalExpense = foodAmount+rentAmount+clothesAmount;
-    
-    innerValue('total-expense').innerText = totalExpense;
-    balance = incomeAmount - totalExpense;
-    innerValue('balance').innerText = balance;
 
-    inputValue('income-amount').value = "";
-    inputValue('food-amount').value = "";
-    inputValue('rent-amount').value = "";
-    inputValue('clothes-amount').value = "";
+document.getElementById('calculate-btn').addEventListener('click', function(){
+    incomeAmount = makeFloat(inputValue('income-amount'));
+    const foodAmount = makeFloat(inputValue('food-amount'));
+    const rentAmount = makeFloat(inputValue('rent-amount'));
+    const clothesAmount = makeFloat(inputValue('clothes-amount'));
+    totalExpense = foodAmount+rentAmount+clothesAmount;
+
+    //Exception Handling
+    if(isNaN(totalExpense)){
+        inputValue('income-amount', incomeAmount);
+        inputValue('food-amount', foodAmount);
+        inputValue('rent-amount', rentAmount);
+        inputValue('clothes-amount', clothesAmount);
+    }else{
+        innerValue('total-expense', totalExpense);
+        balance = incomeAmount - totalExpense;
+        innerValue('balance', balance);
+    }
 })
 
 document.getElementById('save-btn').addEventListener('click', function(){
-    const savePercent = makeFloat(inputValue('save-percent').value)/100;
-
-    const savingAmount = incomeAmount*savePercent;
-    innerValue('saving-amount').innerText = savingAmount;
-
-    const remaingBalance = balance - savingAmount;
-    innerValue('remaining-balance').innerText = remaingBalance;
-
-    inputValue('save-percent').value = "";
+    const savePercent = makeFloat(inputValue('save-percent'))/100;
+    //Exception Handling
+    if(isNaN(savePercent)){
+        inputValue('save-percent', savePercent);
+    }else{
+        const savingAmount = incomeAmount*savePercent;
+        innerValue('saving-amount', savingAmount);
+        const remaingBalance = balance - savingAmount;
+        innerValue('remaining-balance', remaingBalance);
+    }
 })
-
-// document.getElementById('test-btn').addEventListener('click', function(){
-//     console.log(parseInt(document.getElementById('test-input').value));
-//     console.log(document.getElementById('test-input').value);
-// })
+/*
+document.getElementById('test-btn').addEventListener('click', function(){
+    const val = document.getElementById('test-input').value;
+    console.log(parseFloat(val));
+    console.log(val);
+    //console.log(isNan(val));
+    console.log(Number(val));
+    //console.log(isNumber(val));
+})*/
