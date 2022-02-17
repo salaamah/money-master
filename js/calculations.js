@@ -12,14 +12,17 @@ function innerValue(id, value){
 }
 //checking a string and returning value or warning msg
 function makeFloat(str){
-    if (!isNaN(str) && parseFloat(str) > 0){
+    if (!isNaN(str) && parseFloat(str) >= 0){
         return parseFloat(str);
     }
+    else if(parseFloat(str) < 0){
+        return "Can't be negative";
+    }
     else{
-        return "Give a valid and +ve number";
+        return "Invalid number!";
     }
 }
-
+/*We may need these variables in some different functions. So that we have declared them as global variables*/
 let incomeAmount, balance, totalExpense;
 
 document.getElementById('calculate-btn').addEventListener('click', function(){
@@ -28,7 +31,6 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     const rentAmount = makeFloat(inputValue('rent-amount'));
     const clothesAmount = makeFloat(inputValue('clothes-amount'));
     totalExpense = foodAmount+rentAmount+clothesAmount;
-
     //Exception Handling
     if(isNaN(totalExpense)){
         inputValue('income-amount', incomeAmount);
@@ -38,28 +40,28 @@ document.getElementById('calculate-btn').addEventListener('click', function(){
     }else{
         innerValue('total-expense', totalExpense);
         balance = incomeAmount - totalExpense;
-        innerValue('balance', balance);
+        if (totalExpense>incomeAmount){
+            innerValue('balance', 'Expense is higher than Income');
+        }else{
+            innerValue('balance', balance);
+        }
     }
 })
 
 document.getElementById('save-btn').addEventListener('click', function(){
-    const savePercent = makeFloat(inputValue('save-percent'))/100;
+    const savePercent = makeFloat(inputValue('save-percent'));
     //Exception Handling
     if(isNaN(savePercent)){
         inputValue('save-percent', savePercent);
     }else{
-        const savingAmount = incomeAmount*savePercent;
-        innerValue('saving-amount', savingAmount);
-        const remaingBalance = balance - savingAmount;
-        innerValue('remaining-balance', remaingBalance);
+        const savingAmount = incomeAmount*savePercent/100;
+        if (savingAmount>balance){
+            const msg = "No enough balance. You can save "+balance*100/incomeAmount+"% atmost";
+            innerValue('saving-amount', msg);
+        }else{
+            innerValue('saving-amount', savingAmount);
+            const remaingBalance = balance - savingAmount;
+            innerValue('remaining-balance', remaingBalance);
+        }             
     }
 })
-/*
-document.getElementById('test-btn').addEventListener('click', function(){
-    const val = document.getElementById('test-input').value;
-    console.log(parseFloat(val));
-    console.log(val);
-    //console.log(isNan(val));
-    console.log(Number(val));
-    //console.log(isNumber(val));
-})*/
